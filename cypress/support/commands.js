@@ -28,8 +28,15 @@
 // custom command to filter by category
 Cypress.Commands.add('filterByCategory', (category) => {
     // Click on the category dropdown
+    cy.get('div[class="tw-container tw-px-0 tw-mx-auto"]').within(() => {
+      cy.get(`label[for="for=${category}]`).click();
+      // Find divs within the container
+
+      // cy.get(`div[id=${category}]`)
+      // cy.get('div').should('have.length', 3); // Example assertion
+    });
     
-    cy.get('div[class="data-v-17c8fea0"]').contains('div#id', category).click();
+    // cy.get('div[class="data-v-17c8fea0"]').contains('div#id', category).click();
     
     // Select the specified category from the dropdown
 // contains('.category-option', category).click();
