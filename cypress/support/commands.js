@@ -27,35 +27,27 @@
 
 // custom command to filter by category
 Cypress.Commands.add('filterByCategory', (category) => {
-    // Click on the category dropdown
-    cy.get('div[class="tw-container tw-px-0 tw-mx-auto"]').within(() => {
-      cy.get(`label[for="for=${category}]`).click();
-      // Find divs within the container
 
-      // cy.get(`div[id=${category}]`)
-      // cy.get('div').should('have.length', 3); // Example assertion
+  cy.get('div[class="tw-container tw-px-0 tw-mx-auto"]').each(($element) => {
+    cy.wrap($element).within(() => {
+ 
+    cy.get('label').each(($element) => {
+    // Use cy.wrap() to access the jQuery object and perform assertions
+    cy.wrap($element).should('have.attr', 'for').then((forAttr) => {
+      if (forAttr === category) {
+        // Perform actions if the attribute value matches the category
+        // For example, you can log a message or interact with the element
+        cy.wait(3000);
+        cy.wrap($element).click({force:true});
+      }
     });
-    
-    // cy.get('div[class="data-v-17c8fea0"]').contains('div#id', category).click();
-    
-    // Select the specified category from the dropdown
-// contains('.category-option', category).click();
-    
-    // Wait for the page to update with the filtered results
-    cy.wait(2000); // Adjust the wait time as needed
   });
+});
+  });
+
   
-  // Example usage of the custom command
-//   describe('Filtering by Category', () => {
-//     it('should filter by a specific category', () => {
-//       // Visit the webpage
-//       cy.visit('https://www.brandcrowd.com/maker/mydesigns/logodrafts/b5456bd9-12ec-47c5-8b0e-e5f5984d25b0/templatetypes?searchTerm=Instagram%20story');
-      
-//       // Apply the category filter
-//       cy.filterByCategory('Social Media');
-      
-//       // Assert that the page displays the filtered results
-//       cy.get('.filtered-results').should('be.visible');
-//     });
-//   });
+
+  
+  
+  });
   

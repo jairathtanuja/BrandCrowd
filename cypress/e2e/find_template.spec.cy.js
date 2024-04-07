@@ -1,3 +1,4 @@
+
 describe('Search Template', () => {
   beforeEach(() => {
     cy.visit('https://www.brandcrowd.com/maker/mydesigns/logodrafts/b5456bd9-12ec-47c5-8b0e-e5f5984d25b0/templatetypes?searchTerm=Tech%20Challenge');
@@ -10,6 +11,8 @@ describe('Search Template', () => {
     });
 
     it('should search template with filter', () => {
-     
+     cy.filterByCategory('Instagram')
     });
   });
+
+  // /Users/tanujajairath/Documents/GitHub/BrandCrowd/cypress/support/commands.js
